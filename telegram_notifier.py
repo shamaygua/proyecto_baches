@@ -1,8 +1,8 @@
 import requests
 from datetime import datetime
 
-BOT_TOKEN = "8789667995:AAGOyk_qzBXDTKh1Q2WOg4fv3yTBX--bnCQ"
-CHAT_ID = "5726772688"
+BOT_TOKEN = "**********************"
+CHAT_ID = "***********"
 
 def send_telegram_message(text: str) -> bool:
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
@@ -23,7 +23,7 @@ def build_alert(title: str, message: str) -> str:
 
 if __name__ == "__main__":
     msg = build_alert(
-        "✅ Prueba de Telegram",
+        "Prueba de Telegram",
         "El bot del sistema de detección de baches se configuró correctamente."
     )
     ok = send_telegram_message(msg)
