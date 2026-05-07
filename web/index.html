@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Baches</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <h1>Mapa de Baches</h1>
+        <p>Sistema de detección en tiempo real</p>
+    </header>
+
+    <main class="contenedor-principal">
+
+        <div id="panel" class="panel-control">
+            <h2>Panel de control</h2>
+
+            <h3>Filtro por severidad</h3>
+            <div class="grupo-botones">
+                <button onclick="cargarBaches('todas')" class="btn btn-normal">Todas</button>
+                <button onclick="cargarBaches('alta')" class="btn btn-alta">Alta</button>
+                <button onclick="cargarBaches('media')" class="btn btn-media">Media</button>
+                <button onclick="cargarBaches('baja')" class="btn btn-baja">Baja</button>
+            </div>
+
+            <h3>Filtro por tipo de detección</h3>
+            <div class="grupo-botones">
+                <button onclick="filtrarTipo('bache_confirmado_multimodal')" class="btn btn-normal">
+                    Multimodal
+                </button>
+
+                <button onclick="filtrarTipo('bache_probable_con_apoyo_visual')" class="btn btn-normal">
+                    Apoyo visual
+                </button>
+
+                <button onclick="filtrarTipo('bache_probable_visual')" class="btn btn-normal">
+                    Visual
+                </button>
+            </div>
+
+            <div id="resumen" class="resumen">
+                Total: 0 | En pantalla: 0 | Filtro: todas
+            </div>
+        </div>
+
+        <div id="map" class="mapa"></div>
+    </main>
+
+    <script type="module" src="app.js"></script>
+
+</body>
+
+</html>
