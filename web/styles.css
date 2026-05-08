@@ -1,1 +1,251 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background-color: #f3f4f6;
+}
 
+.encabezado {
+    background-color: #1f2937;
+    color: white;
+    padding: 14px 22px;
+}
+
+.encabezado h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.encabezado p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+
+.layout-dashboard {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    height: calc(100vh - 82px);
+    box-sizing: border-box;
+}
+
+.sidebar-filtros {
+    width: 280px;
+    min-width: 280px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+    transition: width 0.25s ease, min-width 0.25s ease;
+    overflow: hidden;
+}
+
+.sidebar-filtros.cerrado {
+    width: 56px;
+    min-width: 56px;
+}
+
+.btn-toggle-sidebar {
+    width: 40px;
+    height: 40px;
+    margin: 10px 0 0 8px;
+    border: none;
+    border-radius: 10px;
+    background: #1f2937;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.contenido-sidebar {
+    padding: 18px 16px 16px 16px;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-filtros.cerrado .contenido-sidebar {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.contenido-sidebar h2 {
+    margin: 6px 0 18px 0;
+    color: #111827;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.bloque-filtro {
+    margin-bottom: 20px;
+}
+
+.bloque-filtro h3 {
+    margin: 0 0 9px 0;
+    color: #374151;
+    font-size: 14px;
+}
+
+.check-opcion {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 8px 0;
+    font-size: 14px;
+    color: #111827;
+    cursor: pointer;
+}
+
+.check-opcion input {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.btn-limpiar {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.zona-mapa {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-control {
+    margin-bottom: 12px;
+    background: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.panel-superior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.panel-control h2 {
+    margin: 0;
+    color: #111827;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.panel-control p {
+    margin: 4px 0 0 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.grupo-botones {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 9px 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.btn-normal {
+    background-color: #e5e7eb;
+    color: black;
+}
+
+.btn-modo {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.btn-modo.activo {
+    background-color: #1f2937;
+    color: white;
+}
+
+.btn-alta {
+    background-color: red;
+    color: white;
+}
+
+.btn-media {
+    background-color: orange;
+    color: white;
+}
+
+.btn-baja {
+    background-color: green;
+    color: white;
+}
+
+.resumen {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #111827;
+}
+
+.mapa {
+    width: 100%;
+    flex: 1;
+    min-height: 520px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.chips-resumen {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.chip-resumen {
+    background: #f3f4f6;
+    border-radius: 999px;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+}
+
+.chip-label {
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.chip-valor {
+    color: #111827;
+    font-weight: 700;
+}
+
+@media (max-width: 900px) {
+    .layout-dashboard {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar-filtros,
+    .sidebar-filtros.cerrado {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .sidebar-filtros.cerrado .contenido-sidebar {
+        display: none;
+    }
+
+    .mapa {
+        height: 600px;
+        flex: none;
+    }
+}
