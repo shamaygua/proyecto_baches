@@ -13,49 +13,107 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
 </head>
 
 <body>
 
     <header class="encabezado">
         <h1>Mapa de Baches</h1>
-        <p>Sistema de detección en tiempo real</p>
+        <p>Sistema de detección y caracterización de baches</p>
     </header>
 
-    <main class="contenedor-principal">
+    <main class="layout-dashboard">
 
-        <div id="panel" class="panel-control">
-            <h2>Panel de control</h2>
+        <aside id="sidebarFiltros" class="sidebar-filtros">
 
-            <h3>Filtro por severidad</h3>
-            <div class="grupo-botones">
-                <button onclick="cargarBaches('todas')" class="btn btn-normal">Todas</button>
-                <button onclick="cargarBaches('alta')" class="btn btn-alta">Alta</button>
-                <button onclick="cargarBaches('media')" class="btn btn-media">Media</button>
-                <button onclick="cargarBaches('baja')" class="btn btn-baja">Baja</button>
-            </div>
+            <button id="btnToggleSidebar" class="btn-toggle-sidebar" onclick="toggleSidebar()" title="Abrir/cerrar filtros">
+                ☰
+            </button>
 
-            <h3>Filtro por tipo de detección</h3>
-            <div class="grupo-botones">
-                <button onclick="filtrarTipo('bache_confirmado_multimodal')" class="btn btn-normal">
-                    Multimodal
+            <div class="contenido-sidebar">
+
+                <h2>Filtros</h2>
+
+                <section class="bloque-filtro">
+                    <h3>Severidad</h3>
+
+                    <label class="check-opcion">
+                        <input type="checkbox" class="filtro-severidad" value="alta" onchange="aplicarFiltros()">
+                        <span>Alta</span>
+                    </label>
+
+                    <label class="check-opcion">
+                        <input type="checkbox" class="filtro-severidad" value="media" onchange="aplicarFiltros()">
+                        <span>Media</span>
+                    </label>
+
+                    <label class="check-opcion">
+                        <input type="checkbox" class="filtro-severidad" value="baja" onchange="aplicarFiltros()">
+                        <span>Baja</span>
+                    </label>
+                </section>
+
+                <section class="bloque-filtro">
+                    <h3>Tipo de detección</h3>
+
+                    <label class="check-opcion">
+                        <input type="checkbox" class="filtro-tipo" value="bache_confirmado_multimodal" onchange="aplicarFiltros()">
+                        <span>Confirmado multimodal</span>
+                    </label>
+
+                    <label class="check-opcion">
+                        <input type="checkbox" class="filtro-tipo" value="bache_probable_con_apoyo_visual" onchange="aplicarFiltros()">
+                        <span>Sensorial con apoyo visual</span>
+                    </label>
+
+                    <label class="check-opcion">
+                        <input type="checkbox" class="filtro-tipo" value="bache_probable_sensorial" onchange="aplicarFiltros()">
+                        <span>Solo sensorial</span>
+                    </label>
+
+                    <label class="check-opcion">
+                        <input type="checkbox" class="filtro-tipo" value="bache_probable_visual" onchange="aplicarFiltros()">
+                        <span>Solo visual</span>
+                    </label>
+                </section>
+
+                <button class="btn btn-normal btn-limpiar" onclick="limpiarFiltros()">
+                    Limpiar filtros
                 </button>
 
-                <button onclick="filtrarTipo('bache_probable_con_apoyo_visual')" class="btn btn-normal">
-                    Apoyo visual
-                </button>
+            </div>
+        </aside>
 
-                <button onclick="filtrarTipo('bache_probable_visual')" class="btn btn-normal">
-                    Visual
-                </button>
+        <section class="zona-mapa">
+
+            <div id="panel" class="panel-control">
+                <div class="panel-superior">
+                    <div>
+                        <h2>Visualización</h2>
+                        <p>Seleccione el modo de análisis del mapa</p>
+                    </div>
+
+                    <div class="grupo-botones modo-visualizacion">
+                        <button id="btnModoMarcadores" onclick="cambiarModoVisualizacion('marcadores')" class="btn btn-modo activo">
+                            Marcadores
+                        </button>
+
+                        <button id="btnModoCalor" onclick="cambiarModoVisualizacion('calor')" class="btn btn-modo">
+                            Mapa de calor
+                        </button>
+                    </div>
+                </div>
+
+                <div id="resumen" class="resumen">
+                    Total: 0 | En pantalla: 0 | Filtros: ninguno | Modo: marcadores
+                </div>
             </div>
 
-            <div id="resumen" class="resumen">
-                Total: 0 | En pantalla: 0 | Filtro: todas
-            </div>
-        </div>
+            <div id="map" class="mapa"></div>
 
-        <div id="map" class="mapa"></div>
+        </section>
+
     </main>
 
     <script type="module" src="app.js"></script>
